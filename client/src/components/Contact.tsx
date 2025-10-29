@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -19,14 +21,29 @@ export default function Contact() {
     message: "",
   });
 
+  const contactMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      return apiRequest("POST", "/api/contact", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", message: "" });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    contactMutation.mutate(formData);
   };
 
   return (
@@ -110,9 +127,10 @@ export default function Contact() {
                 <Button
                   type="submit"
                   className="w-full"
+                  disabled={contactMutation.isPending}
                   data-testid="button-submit"
                 >
-                  Send Message
+                  {contactMutation.isPending ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </Card>
