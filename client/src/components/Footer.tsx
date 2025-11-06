@@ -1,3 +1,4 @@
+"use client";
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoImg from "@assets/generated_images/Green_G_logo_design_28db36e5.png";
@@ -13,27 +14,37 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+    <footer className="relative bg-gradient-to-b from-black via-zinc-900 to-neutral-900 text-gray-300 border-t border-white/10 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-10 mb-12">
+          {/* --- Logo + Description --- */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src={logoImg} alt="GFG Logo" className="h-10 w-10" />
-              <span className="text-xl font-bold">GFG Campus Body</span>
+            <div className="flex items-center gap-3 mb-5">
+              <img
+                src={logoImg}
+                alt="GFG Logo"
+                className="h-10 w-10 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]"
+              />
+              <span className="text-xl font-bold text-cyan-400">
+                SMEC GFG Campus Body
+              </span>
             </div>
-            <p className="text-sm text-primary-foreground/90">
+            <p className="text-sm text-gray-400 leading-relaxed">
               Building tomorrow's tech leaders through collaborative learning
-              and innovation.
+              and innovation. Join us and grow with the community.
             </p>
           </div>
 
+          {/* --- Quick Links --- */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 border-l-4 border-cyan-400 pl-3">
+              Quick Links
+            </h4>
             <div className="flex flex-col gap-2">
               <Button
                 variant="ghost"
                 onClick={() => handleNavClick("#about")}
-                className="justify-start text-primary-foreground hover:text-primary-foreground px-0"
+                className="justify-start text-gray-300 hover:text-cyan-400 hover:translate-x-1 transition-all px-0"
                 data-testid="link-footer-about"
               >
                 About Us
@@ -41,7 +52,7 @@ export default function Footer() {
               <Button
                 variant="ghost"
                 onClick={() => handleNavClick("#team")}
-                className="justify-start text-primary-foreground hover:text-primary-foreground px-0"
+                className="justify-start text-gray-300 hover:text-cyan-400 hover:translate-x-1 transition-all px-0"
                 data-testid="link-footer-team"
               >
                 Our Team
@@ -49,7 +60,7 @@ export default function Footer() {
               <Button
                 variant="ghost"
                 onClick={() => handleNavClick("#contact")}
-                className="justify-start text-primary-foreground hover:text-primary-foreground px-0"
+                className="justify-start text-gray-300 hover:text-cyan-400 hover:translate-x-1 transition-all px-0"
                 data-testid="link-footer-contact"
               >
                 Contact
@@ -57,55 +68,45 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* --- Social Links --- */}
           <div>
-            <h4 className="font-semibold mb-4">Connect With Us</h4>
-            <div className="flex gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary-foreground hover:text-primary-foreground"
-                onClick={() => console.log("Navigate to GitHub")}
-                data-testid="button-social-github"
-              >
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary-foreground hover:text-primary-foreground"
-                onClick={() => console.log("Navigate to LinkedIn")}
-                data-testid="button-social-linkedin"
-              >
-                <Linkedin className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary-foreground hover:text-primary-foreground"
-                onClick={() => console.log("Navigate to Twitter")}
-                data-testid="button-social-twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary-foreground hover:text-primary-foreground"
-                onClick={() => console.log("Navigate to Instagram")}
-                data-testid="button-social-instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </Button>
+            <h4 className="text-lg font-semibold text-white mb-4 border-l-4 border-cyan-400 pl-3">
+              Connect With Us
+            </h4>
+            <div className="flex gap-3">
+              {[
+                { Icon: Github, label: "GitHub" },
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Twitter, label: "Twitter" },
+                { Icon: Instagram, label: "Instagram" },
+              ].map(({ Icon, label }) => (
+                <Button
+                  key={label}
+                  variant="ghost"
+                  size="icon"
+                  className="group text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-full transition-all backdrop-blur-sm"
+                  onClick={() => console.log(`Navigate to ${label}`)}
+                  data-testid={`button-social-${label.toLowerCase()}`}
+                >
+                  <Icon className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                </Button>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-8">
-          <p className="text-center text-sm text-primary-foreground/90">
-            © {new Date().getFullYear()} GFG Campus Body. All rights reserved.
+        {/* --- Bottom Line --- */}
+        <div className="border-t border-white/10 pt-8">
+          <p className="text-center text-sm text-gray-400 tracking-wide">
+            © {new Date().getFullYear()}{" "}
+            <span className="text-cyan-400">SMEC GFG Campus Body</span>. All
+            rights reserved.
           </p>
         </div>
       </div>
+
+      {/* --- Cyan Glow Accent --- */}
+      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent blur-[2px]" />
     </footer>
   );
 }
