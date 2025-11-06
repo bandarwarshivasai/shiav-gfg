@@ -94,14 +94,14 @@ const teamMembers = [
     socials: { github: "#", linkedin: "#", email: "ananya@example.com" },
   },
   {
-    name: "Karthik Reddy",
+    name: "@abc",
     role: "Outreach Lead",
     image: member5,
     bio: "Mobile app developer and tech community builder.",
     socials: { github: "#", linkedin: "#", email: "karthik@example.com" },
   },
   {
-    name: "Sneha Gupta",
+    name: "@abc",
     role: "Content Lead",
     image: member6,
     bio: "Technical writer and frontend developer.",
