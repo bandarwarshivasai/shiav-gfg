@@ -11,8 +11,8 @@ import member1 from "@assets/generated_images/khaja.jpeg";
 import member2 from "@assets/generated_images/kiran.jpeg";
 import member3 from "@assets/generated_images/shiva.jpeg";
 import member4 from "@assets/generated_images/potti.jpeg";
-import member5 from "@assets/generated_images/Male_student_tech_lead_e193597c.png";
-import member6 from "@assets/generated_images/Female_student_programmer_portrait_cb1da7d2.png";
+import member5 from "@assets/generated_images/transparent png.jpg";
+import member6 from "@assets/generated_images/transparent png.jpg";
 
 // 🌌 Subtle Animated Background Particles / Aurora Glow
 function ParticleBackground() {
@@ -80,7 +80,7 @@ const teamMembers = [
     socials: { github: "#", linkedin: "#", email: "kirankumaramarlapudi@example.com" },
   },
   {
-    name: "Bnadarwar Shiva Sai",
+    name: "Bandarwar Shiva Sai",
     role: "Technical Lead",
     image: member3,
     bio: "Passionate about technology, continuous learning, and logical problem-solving — always eager to innovate and inspire.",
